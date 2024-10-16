@@ -1,7 +1,7 @@
 
 # MKPSXISO-GUI
 
-Made with [mkpsxiso](https://github.com/MeganGrass/mkpsxiso), mkpsxiso-gui is an app for Windows that dumps and creates Sony PlayStation ISO images
+Made with [mkpsxiso](https://github.com/MeganGrass/mkpsxiso), mkpsxiso-gui is an app for Windows that dumps and creates Sony PlayStation (1994) ISO images
 
 Both *dumpsxiso* and *mkpsxiso* are built into the app -- mkpsxiso-gui is a standalone app and does not require any external dependencies
 
@@ -10,6 +10,17 @@ Both *dumpsxiso* and *mkpsxiso* are built into the app -- mkpsxiso-gui is a stan
 - Windows directory and file browser support
 - Drag-and-Drop support
 - Basic Tooltips
+
+#### **Windows directory and file browser support**
+Instead of copying, pasting and typing out commands, *mkpsxiso-gui* provides Windows GUI to select folder locations and open/save files
+
+#### **Drag-and-Drop**
+When a Sony PlayStation (1994) ISO/BIN is "dragged and dropped" onto the app, that ISO/BIN will be automatically dumped
+
+When a *mkpsxiso* XML is "dragged and dropped" onto the app, an ISO/BIN will be automatically created
+
+#### **Basic Tooltips**
+Every interactive button, etc., has a "*tooltip*," intended to describe each feature. Simply hover the mouse above any of these features to activate 
 
 ## Images
 ![Alt text](/images/mkpsxiso-gui_00.jpg?raw=true "Optional Title")
