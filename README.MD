@@ -12,7 +12,7 @@ Both *dumpsxiso* and *mkpsxiso* are built into the app -- mkpsxiso-gui is a stan
 - Basic Tooltips
 
 #### **Windows directory and file browser support**
-Instead of copying, pasting and typing out commands, *mkpsxiso-gui* provides Windows GUI to select folder locations and open/save files
+Instead of copying, pasting and typing out commands, *mkpsxiso-gui* utilizes Windows API/GUI to select folder locations and open/save files
 
 #### **Drag-and-Drop**
 When a Sony PlayStation (1994) ISO/BIN is "dragged and dropped" onto the app, that ISO/BIN will be automatically dumped
