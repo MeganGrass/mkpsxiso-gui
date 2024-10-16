@@ -749,6 +749,8 @@ BOOL CALLBACK MakeProc(HWND hwndDlg, UINT message, WPARAM wParam, LPARAM lParam)
 				Window->Status(2, "Operation: Fail");
 				Window->Message(L"\"%ws\" is an invalid file", MakeISO->Filename.filename().wstring().c_str());
 			}
+            Window->Status(2, "Status: Ready\0");
+            return TRUE;
         }
 
         if (LOWORD(wParam) == IDC_MKPSXISO_OPEN)
