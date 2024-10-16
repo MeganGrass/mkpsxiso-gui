@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Windows">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Standard">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Standard\Windows">
+      <UniqueIdentifier>{4780008e-ea30-431c-8d63-8d6c4e584db0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Standard\Debug">
+      <UniqueIdentifier>{a36e077d-4290-42a4-99f0-47df82968644}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="main.h" />
+    <ClInclude Include="Windows\Resource.h">
+      <Filter>Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mstd-lib\Windows\std_common.h">
+      <Filter>Standard\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mstd-lib\Windows\std_window.h">
+      <Filter>Standard\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mstd-lib\std_filesystem.h">
+      <Filter>Standard</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mstd-lib\std_string.h">
+      <Filter>Standard</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mstd-lib\std_cstyle.h">
+      <Filter>Standard</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mstd-lib\std_data_types.h">
+      <Filter>Standard</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mstd-lib\std_defines.h">
+      <Filter>Standard</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mstd-lib\std_exception.h">
+      <Filter>Standard</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mstd-lib\Windows\std_device.h">
+      <Filter>Standard\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mstd-lib\std_text.h">
+      <Filter>Standard</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mstd-lib\std_basic_fstream.h">
+      <Filter>Standard</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mstd-lib\std_crc32.h">
+      <Filter>Standard</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mstd-lib\Windows\std_system.h">
+      <Filter>Standard\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mstd-lib\std_debug.h">
+      <Filter>Standard\Debug</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="..\..\mstd-lib\Windows\std_window_preset.cpp">
+      <Filter>Standard\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mstd-lib\Windows\std_common.cpp">
+      <Filter>Standard\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mstd-lib\Windows\std_window.cpp">
+      <Filter>Standard\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mstd-lib\Windows\std_window_message.cpp">
+      <Filter>Standard\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mstd-lib\std_filesystem.cpp">
+      <Filter>Standard</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mstd-lib\std_string.cpp">
+      <Filter>Standard</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mstd-lib\std_exception.cpp">
+      <Filter>Standard</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mstd-lib\Windows\std_device.cpp">
+      <Filter>Standard\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mstd-lib\std_text.cpp">
+      <Filter>Standard</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mstd-lib\Windows\std_display_enum.cpp">
+      <Filter>Standard\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mstd-lib\std_basic_fstream.cpp">
+      <Filter>Standard</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mstd-lib\std_crc32.cpp">
+      <Filter>Standard</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mstd-lib\Windows\std_system.cpp">
+      <Filter>Standard\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mstd-lib\std_debug.cpp">
+      <Filter>Standard\Debug</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Windows\icon.ico">
+      <Filter>Windows</Filter>
+    </Image>
+    <Image Include="Windows\small.ico">
+      <Filter>Windows</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Windows\Resource.rc">
+      <Filter>Windows</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="Windows\manifest.xml">
+      <Filter>Windows</Filter>
+    </Xml>
+  </ItemGroup>
+</Project>
