@@ -165,7 +165,6 @@
     <ClInclude Include="..\..\mstd-lib\std_text.h" />
     <ClInclude Include="..\..\mstd-lib\Windows\std_common.h" />
     <ClInclude Include="..\..\mstd-lib\Windows\std_device.h" />
-    <ClInclude Include="..\..\mstd-lib\Windows\std_system.h" />
     <ClInclude Include="..\..\mstd-lib\Windows\std_window.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="Windows\Resource.h" />
@@ -181,15 +180,13 @@
     <ClCompile Include="..\..\mstd-lib\Windows\std_common.cpp" />
     <ClCompile Include="..\..\mstd-lib\Windows\std_device.cpp" />
     <ClCompile Include="..\..\mstd-lib\Windows\std_display_enum.cpp" />
-    <ClCompile Include="..\..\mstd-lib\Windows\std_system.cpp" />
     <ClCompile Include="..\..\mstd-lib\Windows\std_window.cpp" />
     <ClCompile Include="..\..\mstd-lib\Windows\std_window_message.cpp" />
-    <ClCompile Include="..\..\mstd-lib\Windows\std_window_preset.cpp" />
+    <ClCompile Include="..\..\mstd-lib\Windows\std_window_settings.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Windows\icon.ico" />
-    <Image Include="Windows\small.ico" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Windows\Resource.rc" />

@@ -19,7 +19,7 @@ enum class AudioEncoding
 	WAVE, PCM, FLAC
 };
 
-struct tagMain {
+struct tagSplash {
 	HWND hWnd = nullptr;									// Handle to the splash gui window
 };
 
@@ -58,7 +58,7 @@ struct tagMakeISO {
 extern int dumpsxiso(char* commandline);					// dumpsxiso.lib
 extern int mkpsxiso(char* commandline);						// mkpsxiso.lib
 
-std::unique_ptr<tagMain> Main = std::make_unique<tagMain>();
+std::unique_ptr<tagSplash> Splash = std::make_unique<tagSplash>();
 std::unique_ptr<tagDumpISO> DumpISO = std::make_unique<tagDumpISO>();
 std::unique_ptr<tagMakeISO> MakeISO = std::make_unique<tagMakeISO>();
 

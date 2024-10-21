@@ -14,15 +14,15 @@
 #define VER_OS							5				// 64-bit Windows
 
 
-#define VER_FILE_VERSION				2,1,0,0
-#define VER_FILE_VERSION_STR			L"2.1.0.0\0\0"
-#define VER_PRODUCT_VERSION				2,1,0,0
-#define VER_PRODUCT_VERSION_STR			L"2.1.0.0\0\0"
+#define VER_FILE_VERSION				2,1,0,1
+#define VER_FILE_VERSION_STR			L"2.1.0.1\0\0"
+#define VER_PRODUCT_VERSION				2,1,0,1
+#define VER_PRODUCT_VERSION_STR			L"2.1.0.1\0\0"
 
 
 #define VER_COMMENTS_STR				L"\0\0"
 #define VER_COMPANY_NAME_STR			L"Megan Grass\0\0"
-#define VER_FILE_DESCRIPTION_STR		L"GUI for dumpsxiso and mkpsxiso\0\0"
+#define VER_FILE_DESCRIPTION_STR		L"Sony PlayStation (1994) ISO Utility\0\0"
 #define VER_INTERNAL_NAME_STR			L"mkpsxiso-gui\0\0"
 #define VER_LEGAL_COPYRIGHT_STR			L"2017-2022 Meido-Tek Productions (John Wilbert Villamor/Lameguy64), 2020 Phoenix (SadNES cITy), 2021-2022 Silent, Chromaryu, G4Vi, and spicyjpeg\0\0"
 #define VER_LEGAL_TRADEMARKS_STR		L"\0\0"
@@ -62,13 +62,12 @@
 #endif
 #endif
 
-// MAIN
-#define IDD_MAIN						5000
-#define IDI_DUMP_ISO					5001
-#define IDI_MAKE_ISO					5002
-#define IDC_MAIN						5003
-#define IDC_MAIN_DUMP_ISO				5004
-#define IDC_MAIN_MAKE_ISO				5005
+// SPLASH
+#define IDD_SPLASH						5000
+#define IDI_SPLASH_DUMP_ISO				5001
+#define IDI_SPLASH_MAKE_ISO				5002
+#define IDC_SPLASH_DUMP_ISO				5003
+#define IDC_SPLASH_MAKE_ISO				5004
 
 // DUMPSXISO
 #define IDD_DUMPSXISO					6000

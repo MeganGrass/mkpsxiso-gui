@@ -48,25 +48,22 @@
     <ClInclude Include="..\..\mstd-lib\Windows\std_device.h">
       <Filter>Standard\Windows</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\mstd-lib\std_text.h">
-      <Filter>Standard</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\mstd-lib\std_basic_fstream.h">
-      <Filter>Standard</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\mstd-lib\std_crc32.h">
       <Filter>Standard</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\mstd-lib\Windows\std_system.h">
-      <Filter>Standard\Windows</Filter>
     </ClInclude>
     <ClInclude Include="..\..\mstd-lib\std_debug.h">
       <Filter>Standard\Debug</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\mstd-lib\std_basic_fstream.h">
+      <Filter>Standard</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mstd-lib\std_text.h">
+      <Filter>Standard</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="..\..\mstd-lib\Windows\std_window_preset.cpp">
+    <ClCompile Include="..\..\mstd-lib\Windows\std_window_settings.cpp">
       <Filter>Standard\Windows</Filter>
     </ClCompile>
     <ClCompile Include="..\..\mstd-lib\Windows\std_common.cpp">
@@ -90,30 +87,24 @@
     <ClCompile Include="..\..\mstd-lib\Windows\std_device.cpp">
       <Filter>Standard\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\mstd-lib\std_text.cpp">
-      <Filter>Standard</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\mstd-lib\Windows\std_display_enum.cpp">
       <Filter>Standard\Windows</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\mstd-lib\std_basic_fstream.cpp">
-      <Filter>Standard</Filter>
     </ClCompile>
     <ClCompile Include="..\..\mstd-lib\std_crc32.cpp">
       <Filter>Standard</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\mstd-lib\Windows\std_system.cpp">
-      <Filter>Standard\Windows</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\mstd-lib\std_debug.cpp">
       <Filter>Standard\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mstd-lib\std_basic_fstream.cpp">
+      <Filter>Standard</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mstd-lib\std_text.cpp">
+      <Filter>Standard</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Windows\icon.ico">
-      <Filter>Windows</Filter>
-    </Image>
-    <Image Include="Windows\small.ico">
       <Filter>Windows</Filter>
     </Image>
   </ItemGroup>
