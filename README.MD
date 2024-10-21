@@ -49,5 +49,10 @@ MKPSXISO 2.10 - PlayStation ISO Image Maker
 ```
 
 ## Changelog
+Version 2.1.0.1 (October 20, 2024)
+- "Output Directory," "XML Output," "image_name," and "cue_sheet" fields will now be automatically repopulated every time an ISO/BIN/XML is selected via Windows file browser
+- Code cleanup and background updates
+- "Dark Mode" enabled by default
+
 Version 2.1.0.0 (October 15, 2024)
 - Initial release
