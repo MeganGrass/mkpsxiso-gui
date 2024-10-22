@@ -153,8 +153,6 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\mstd-lib\std_basic_fstream.h" />
-    <ClInclude Include="..\..\mstd-lib\std_crc32.h" />
     <ClInclude Include="..\..\mstd-lib\std_cstyle.h" />
     <ClInclude Include="..\..\mstd-lib\std_data_types.h" />
     <ClInclude Include="..\..\mstd-lib\std_debug.h" />
@@ -162,7 +160,6 @@
     <ClInclude Include="..\..\mstd-lib\std_exception.h" />
     <ClInclude Include="..\..\mstd-lib\std_filesystem.h" />
     <ClInclude Include="..\..\mstd-lib\std_string.h" />
-    <ClInclude Include="..\..\mstd-lib\std_text.h" />
     <ClInclude Include="..\..\mstd-lib\Windows\std_common.h" />
     <ClInclude Include="..\..\mstd-lib\Windows\std_device.h" />
     <ClInclude Include="..\..\mstd-lib\Windows\std_window.h" />
@@ -170,13 +167,10 @@
     <ClInclude Include="Windows\Resource.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\mstd-lib\std_basic_fstream.cpp" />
-    <ClCompile Include="..\..\mstd-lib\std_crc32.cpp" />
     <ClCompile Include="..\..\mstd-lib\std_debug.cpp" />
     <ClCompile Include="..\..\mstd-lib\std_exception.cpp" />
     <ClCompile Include="..\..\mstd-lib\std_filesystem.cpp" />
     <ClCompile Include="..\..\mstd-lib\std_string.cpp" />
-    <ClCompile Include="..\..\mstd-lib\std_text.cpp" />
     <ClCompile Include="..\..\mstd-lib\Windows\std_common.cpp" />
     <ClCompile Include="..\..\mstd-lib\Windows\std_device.cpp" />
     <ClCompile Include="..\..\mstd-lib\Windows\std_display_enum.cpp" />

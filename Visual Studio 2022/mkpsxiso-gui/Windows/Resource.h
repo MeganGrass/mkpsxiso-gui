@@ -14,10 +14,10 @@
 #define VER_OS							5				// 64-bit Windows
 
 
-#define VER_FILE_VERSION				2,1,0,1
-#define VER_FILE_VERSION_STR			L"2.1.0.1\0\0"
-#define VER_PRODUCT_VERSION				2,1,0,1
-#define VER_PRODUCT_VERSION_STR			L"2.1.0.1\0\0"
+#define VER_FILE_VERSION				2,1,0,2
+#define VER_FILE_VERSION_STR			L"2.1.0.2\0\0"
+#define VER_PRODUCT_VERSION				2,1,0,2
+#define VER_PRODUCT_VERSION_STR			L"2.1.0.2\0\0"
 
 
 #define VER_COMMENTS_STR				L"\0\0"
