@@ -15,69 +15,69 @@ static bool DragAndDrop(StrVecW Files)
 
     for (std::size_t i = 0; i < Files.size(); i++)
     {
-		StringW FileExtension = FS.GetFileExtension(Files[i]).wstring();
+        StringW FileExtension = FS.GetFileExtension(Files[i]).wstring();
 
         Str.ToUpper(FileExtension);
 
-		if (FileExtension == L".ISO" || FileExtension == L".BIN")
-		{
+        if (FileExtension == L".ISO" || FileExtension == L".BIN")
+        {
             DumpISO->Filename = Files[i];
-			DumpISO->b_CreateXml = true;
+            DumpISO->b_CreateXml = true;
             DumpISO->OutputPath = Window->GetDirectory(DumpISO->Filename);
             DumpISO->OutputPath += "\\" + DumpISO->Filename.stem().string();
             DumpISO->XmlFilename = DumpISO->OutputPath / DumpISO->Filename.stem().string() += ".xml";
 
-            SendMessage(Window->GetHandle(), WM_COMMAND, IDM_DUMPSXISO, 0);
+            SendMessage(Window->Get(), WM_COMMAND, IDM_DUMPSXISO, 0);
             SetDlgItemText(DumpISO->hWnd, IDC_DUMPSXISO_FILE, Files[i].c_str());
             SetDlgItemText(DumpISO->hWnd, IDC_DUMPSXISO_OUTPUT, DumpISO->OutputPath.c_str());
             SetDlgItemText(DumpISO->hWnd, IDC_DUMPSXISO_XML_FILE, DumpISO->XmlFilename.c_str());
             SendMessage(DumpISO->hWnd, WM_COMMAND, IDC_DUMPSXISO_DUMP, 0);
-		}
+        }
 
         if (FileExtension == L".XML")
         {
-			MakeISO->Filename = Files[i];
-			MakeISO->b_Overwrite = true;
-			MakeISO->b_OverrideImageName = true;
-			MakeISO->b_OverrideCueName = true;
+            MakeISO->Filename = Files[i];
+            MakeISO->b_Overwrite = true;
+            MakeISO->b_OverrideImageName = true;
+            MakeISO->b_OverrideCueName = true;
             MakeISO->b_OverrideVolumeLabel = false;
-			MakeISO->b_GenLBA = false;
-			MakeISO->b_GenHeader = false;
-			MakeISO->b_GenFilecode = false;
-			MakeISO->b_GenRE1LBA = false;
-			MakeISO->b_GenRE2LBA = false;
-			MakeISO->b_GenRETEXT = false;
+            MakeISO->b_GenLBA = false;
+            MakeISO->b_GenHeader = false;
+            MakeISO->b_GenFilecode = false;
+            MakeISO->b_GenRE1LBA = false;
+            MakeISO->b_GenRE2LBA = false;
+            MakeISO->b_GenRETEXT = false;
             MakeISO->b_GenNoISO = false;
 
             MakeISO->BinFilename = Window->GetDirectory(MakeISO->Filename) / MakeISO->Filename.stem().string() += ".bin";
-			MakeISO->CueFilename = Window->GetDirectory(MakeISO->Filename) / MakeISO->Filename.stem().string() += ".cue";
+            MakeISO->CueFilename = Window->GetDirectory(MakeISO->Filename) / MakeISO->Filename.stem().string() += ".cue";
 
-            SendMessage(Window->GetHandle(), WM_COMMAND, IDM_MKPSXISO, 0);
+            SendMessage(Window->Get(), WM_COMMAND, IDM_MKPSXISO, 0);
             SetDlgItemText(MakeISO->hWnd, IDC_MKPSXISO_FILE, MakeISO->Filename.c_str());
             SetDlgItemText(MakeISO->hWnd, IDC_MKPSXISO_IMAGE, MakeISO->BinFilename.c_str());
-			SetDlgItemText(MakeISO->hWnd, IDC_MKPSXISO_CUE, MakeISO->CueFilename.c_str());
-			SendMessage(MakeISO->hWnd, WM_COMMAND, IDC_MKPSXISO_MAKE, 0);
+            SetDlgItemText(MakeISO->hWnd, IDC_MKPSXISO_CUE, MakeISO->CueFilename.c_str());
+            SendMessage(MakeISO->hWnd, WM_COMMAND, IDC_MKPSXISO_MAKE, 0);
         }
     }
 
     Window->ClearDroppedFiles();
 
-	return true;
+    return true;
 }
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPWSTR lpCmdLine, _In_ int nCmdShow)
 {
     Window->PresetStyle(WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX);
     Window->PresetStyleEx(WS_EX_ACCEPTFILES | WS_EX_APPWINDOW);
+	Window->SetCaptionName(hInstance, IDS_APP_TITLE);
     Window->PresetClassName(hInstance, IDR_WINDOW);
-    Window->PresetWindowName(hInstance, IDS_APP_TITLE);
-    Window->PresetIcon(hInstance, IDI_WINDOW);
-    Window->PresetIconSm(hInstance, IDI_WINDOW);
-    Window->PresetMenu(hInstance, IDR_WINDOW);
-    Window->PresetStatusBar(3);
-    Window->PresetOptions(WindowOptions::StatusBar);
-    Window->Create(1920, 1080, hInstance, nCmdShow, WndProc);
-    Window->SetAcceleratorTable(hInstance, IDR_WINDOW);
+    Window->SetIcon(hInstance, IDI_WINDOW);
+    Window->SetIconSmall(hInstance, IDI_WINDOW);
+    Window->SetMenu(hInstance, IDR_WINDOW);
+	Window->SetAcceleratorTable(hInstance, IDR_WINDOW);
+    Window->SetColor(0, 128, 255);
+    Window->SetStatusBar(3);
+    Window->Create(1920, 1080, hInstance, nCmdShow, WndProc, WindowOptions::StatusBar);
     Window->Status(0, "%ws", VER_INTERNAL_NAME_STR);
     Window->Status(1, "v%ws", VER_PRODUCT_VERSION_STR);
     Window->Status(2, "Status: Mode Not Set\0");
@@ -93,9 +93,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
 
     MakeISO->hWnd = nullptr;
     MakeISO->b_Overwrite = true;
-	MakeISO->b_OverrideImageName = false;
-	MakeISO->b_OverrideCueName = false;
-	MakeISO->b_OverrideVolumeLabel = false;
+    MakeISO->b_OverrideImageName = false;
+    MakeISO->b_OverrideCueName = false;
+    MakeISO->b_OverrideVolumeLabel = false;
     MakeISO->b_GenLBA = false;
     MakeISO->b_GenHeader = false;
     MakeISO->b_GenFilecode = false;
@@ -106,11 +106,11 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
     MakeISO->b_GenNoCDXA = false;
     MakeISO->b_RebuildXML = false;
 
-    CreateDialog(Window->GetInstance(), MAKEINTRESOURCE(IDD_SPLASH), Window->GetHandle(), (DLGPROC)SplashProc);
+    CreateDialog(Window->GetInstance(), MAKEINTRESOURCE(IDD_SPLASH), Window->Get(), (DLGPROC)SplashProc);
 
-	HWND hButton = GetDlgItem(Splash->hWnd, IDC_SPLASH_DUMP_ISO);
+    HWND hButton = GetDlgItem(Splash->hWnd, IDC_SPLASH_DUMP_ISO);
     HICON hIcon = (HICON)LoadImage(hInstance, MAKEINTRESOURCE(IDI_SPLASH_DUMP_ISO), IMAGE_ICON, 0, 0, LR_DEFAULTCOLOR);
-	SendMessage(hButton, BM_SETIMAGE, IMAGE_ICON, (LPARAM)hIcon);
+    SendMessage(hButton, BM_SETIMAGE, IMAGE_ICON, (LPARAM)hIcon);
 
     hButton = GetDlgItem(Splash->hWnd, IDC_SPLASH_MAKE_ISO);
     hIcon = (HICON)LoadImage(hInstance, MAKEINTRESOURCE(IDI_SPLASH_MAKE_ISO), IMAGE_ICON, 0, 0, LR_DEFAULTCOLOR);
@@ -118,12 +118,14 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
 
     Window->AddChildWindow(Splash->hWnd, true);
 
+    HACCEL hAccTable = Window->GetAcceleratorTable();
+
     MSG msg{};
     msg.message = NULL;
-    msg.hwnd = Window->GetHandle();
+    msg.hwnd = Window->Get();
     while (msg.message != WM_QUIT)
     {
-        if (TranslateAccelerator(Window->GetHandle(), Window->GetAcceleratorTable(), &msg))
+        if (TranslateAccelerator(msg.hwnd, hAccTable, &msg))
         {
             TranslateMessage(&msg);
             DispatchMessage(&msg);
@@ -137,13 +139,13 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance
         {
             Window->SleepTimer();
 
-			Splash->hWnd ? UpdateWindow(Splash->hWnd) : 0;
+            Splash->hWnd ? UpdateWindow(Splash->hWnd) : 0;
 
-			DumpISO->hWnd ? UpdateWindow(DumpISO->hWnd) : 0;
+            DumpISO->hWnd ? UpdateWindow(DumpISO->hWnd) : 0;
 
-			MakeISO->hWnd ? UpdateWindow(MakeISO->hWnd) : 0;
+            MakeISO->hWnd ? UpdateWindow(MakeISO->hWnd) : 0;
 
-			Window->GetDroppedFiles().empty() ? 0 : DragAndDrop(Window->GetDroppedFiles());
+            Window->DroppedFiles() ? DragAndDrop(Window->GetDroppedFiles()) : 0;
         }
     }
 
@@ -158,54 +160,50 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) 
         PostQuitMessage(0);
         break;
     case WM_COMMAND:
-        switch (LOWORD(wParam))
-        {
-        case IDM_DUMPSXISO:
-            CheckMenuItem(Window->GetMenu(), IDM_DUMPSXISO, MF_CHECKED);
-            CheckMenuItem(Window->GetMenu(), IDM_MKPSXISO, MF_UNCHECKED);
-            if (!IsWindow(DumpISO->hWnd))
-            {
-                Window->ClearChildWindows();
-                CreateDialog(Window->GetInstance(), MAKEINTRESOURCE(IDD_DUMPSXISO), Window->GetHandle(), (DLGPROC)DumpProc);
-                Window->AddChildWindow(DumpISO->hWnd, true);
-            }
-            Window->Status(0, "DUMPSXISO");
-            Window->Status(1, "2.10-RE");
-            Window->Status(2, "Status: Ready\0");
-            break;
-        case IDM_MKPSXISO:
-            CheckMenuItem(Window->GetMenu(), IDM_DUMPSXISO, MF_UNCHECKED);
-            CheckMenuItem(Window->GetMenu(), IDM_MKPSXISO, MF_CHECKED);
-            if (!IsWindow(MakeISO->hWnd))
-            {
-                Window->ClearChildWindows();
-                CreateDialog(Window->GetInstance(), MAKEINTRESOURCE(IDD_MKPSXISO), Window->GetHandle(), (DLGPROC)MakeProc);
-                Window->AddChildWindow(MakeISO->hWnd, true);
-            }
-            Window->Status(0, "MKPSXISO");
-            Window->Status(1, "2.10-RE");
-            Window->Status(2, "Status: Ready\0");
-            break;
-        case IDM_ABOUT:
+        if (LOWORD(wParam) == IDM_ABOUT)
         {
             StringW OldStatus = Window->GetStatus(2);
             Window->Status(2, "Operation: About\0");
             Window->Message("DUMPSXISO 2.10 - PlayStation ISO dumping tool\r\n2017 Meido-Tek Productions (John \"Lameguy\" Wilbert Villamor/Lameguy64)\r\n2020 Phoenix (SadNES cITy)\r\n2021-2022 Silent, Chromaryu, G4Vi, and spicyjpeg\r\n\r\nMKPSXISO 2.10 - PlayStation ISO Image Maker\r\n2017-2022 Meido-Tek Productions (John \"Lameguy\" Wilbert Villamor/Lameguy64)\r\n2021-2022 Silent, Chromaryu, G4Vi, and spicyjpeg\r\n\r\nhttps://github.com/Lameguy64/mkpsxiso\r\n\r\n --- \r\n\r\n%ws - %ws\r\nv%ws %s %s Megan Grass\r\n\r\nhttps://github.com/MeganGrass/mkpsxiso-gui", VER_INTERNAL_NAME_STR, VER_FILE_DESCRIPTION_STR, VER_PRODUCT_VERSION_STR, __DATE__, __TIME__);
             Window->Status(2, OldStatus.c_str());
         }
-            break;
-        case IDM_EXIT:
+        if (LOWORD(wParam) == IDM_EXIT)
+        {
             DestroyWindow(hWnd);
-            break;
-        default:
-            return DefWindowProc(hWnd, message, wParam, lParam);
+        }
+        if (LOWORD(wParam) == IDM_DUMPSXISO)
+        {
+            CheckMenuItem(Window->GetMenuHandle(), IDM_DUMPSXISO, MF_CHECKED);
+            CheckMenuItem(Window->GetMenuHandle(), IDM_MKPSXISO, MF_UNCHECKED);
+            if (!IsWindow(DumpISO->hWnd))
+            {
+                Window->ClearChildWindows();
+                CreateDialog(Window->GetInstance(), MAKEINTRESOURCE(IDD_DUMPSXISO), Window->Get(), (DLGPROC)DumpProc);
+                Window->AddChildWindow(DumpISO->hWnd, true);
+            }
+            Window->Status(0, "DUMPSXISO");
+            Window->Status(1, "2.10-RE");
+            Window->Status(2, "Status: Ready\0");
+        }
+        if (LOWORD(wParam) == IDM_MKPSXISO)
+        {
+            CheckMenuItem(Window->GetMenuHandle(), IDM_DUMPSXISO, MF_UNCHECKED);
+            CheckMenuItem(Window->GetMenuHandle(), IDM_MKPSXISO, MF_CHECKED);
+            if (!IsWindow(MakeISO->hWnd))
+            {
+                Window->ClearChildWindows();
+                CreateDialog(Window->GetInstance(), MAKEINTRESOURCE(IDD_MKPSXISO), Window->Get(), (DLGPROC)MakeProc);
+                Window->AddChildWindow(MakeISO->hWnd, true);
+            }
+            Window->Status(0, "MKPSXISO");
+            Window->Status(1, "2.10-RE");
+            Window->Status(2, "Status: Ready\0");
         }
         break;
     case WM_PAINT:
     {
         PAINTSTRUCT ps;
         HDC hdc = BeginPaint(hWnd, &ps);
-        // TODO: Add any drawing code that uses hdc here...
         EndPaint(hWnd, &ps);
     }
     break;
@@ -236,17 +234,16 @@ BOOL CALLBACK SplashProc(HWND hwndDlg, UINT message, WPARAM wParam, LPARAM lPara
     case WM_COMMAND:
         if (LOWORD(wParam) == IDC_SPLASH_DUMP_ISO)
         {
-			SendMessage(Window->GetHandle(), WM_COMMAND, IDM_DUMPSXISO, 0);
-			return TRUE;
+            SendMessage(Window->Get(), WM_COMMAND, IDM_DUMPSXISO, 0);
+            return TRUE;
         }
-		if (LOWORD(wParam) == IDC_SPLASH_MAKE_ISO)
-		{
-            SendMessage(Window->GetHandle(), WM_COMMAND, IDM_MKPSXISO, 0);
-			return TRUE;
-		}
+        if (LOWORD(wParam) == IDC_SPLASH_MAKE_ISO)
+        {
+            SendMessage(Window->Get(), WM_COMMAND, IDM_MKPSXISO, 0);
+            return TRUE;
+        }
         break;
     }
-
     return FALSE;
 }
 
@@ -299,7 +296,7 @@ BOOL CALLBACK DumpProc(HWND hwndDlg, UINT message, WPARAM wParam, LPARAM lParam)
 
         ShowWindow(hwndDlg, SW_SHOW);
     }
-        return TRUE;
+    return TRUE;
     case WM_DROPFILES:
         Window->MsgDropFiles(wParam, lParam);
         return FALSE;
@@ -338,8 +335,8 @@ BOOL CALLBACK DumpProc(HWND hwndDlg, UINT message, WPARAM wParam, LPARAM lParam)
                     GetDlgItemTextA(hwndDlg, IDC_DUMPSXISO_XML_FILE, &Buffer.data()[0], 65535);
                     DumpISO->XmlFilename = Buffer.data();
                     if (DumpISO->XmlFilename.empty())
-					{
-						DumpISO->XmlFilename = DumpISO->OutputPath / DumpISO->Filename.stem().string() += ".xml";
+                    {
+                        DumpISO->XmlFilename = DumpISO->OutputPath / DumpISO->Filename.stem().string() += ".xml";
                     }
                     Commandline += "-s \"" + DumpISO->XmlFilename.string() + "\" ";
                 }
@@ -367,16 +364,16 @@ BOOL CALLBACK DumpProc(HWND hwndDlg, UINT message, WPARAM wParam, LPARAM lParam)
                 // iso file
                 Commandline += "\"" + DumpISO->Filename.string() + "\"";
 
-				// commandline
+                // commandline
                 if (dumpsxiso((CHAR*)Commandline.c_str()) == EXIT_SUCCESS)
                 {
                     Window->Status(2, "Operation: Success");
-					Window->Message(L"\"%ws\" was dumped successfully to:\r\n\r\n %ws", DumpISO->Filename.filename().wstring().c_str(), DumpISO->OutputPath.wstring().c_str());
-				}
-				else
-				{
+                    Window->Message(L"\"%ws\" was dumped successfully to:\r\n\r\n %ws", DumpISO->Filename.filename().wstring().c_str(), DumpISO->OutputPath.wstring().c_str());
+                }
+                else
+                {
                     Window->Status(2, "Operation: Fail");
-					Window->Message(L"An unknown error occurred when trying to dump \"%ws\"\r\n\r\nCommandline:\r\n\r\n%s", DumpISO->Filename.stem().wstring().c_str(), Commandline.c_str());
+                    Window->Message(L"An unknown error occurred when trying to dump \"%ws\"\r\n\r\nCommandline:\r\n\r\n%s", DumpISO->Filename.stem().wstring().c_str(), Commandline.c_str());
                 }
             }
             else
@@ -420,41 +417,41 @@ BOOL CALLBACK DumpProc(HWND hwndDlg, UINT message, WPARAM wParam, LPARAM lParam)
             DumpISO->Encoding = AudioEncoding::WAVE;
             CheckDlgButton(hwndDlg, IDC_DUMPSXISO_WAVE, BST_CHECKED);
             CheckDlgButton(hwndDlg, IDC_DUMPSXISO_PCM, BST_UNCHECKED);
-			CheckDlgButton(hwndDlg, IDC_DUMPSXISO_FLAC, BST_UNCHECKED);
-			return TRUE;
+            CheckDlgButton(hwndDlg, IDC_DUMPSXISO_FLAC, BST_UNCHECKED);
+            return TRUE;
         }
 
-		if (LOWORD(wParam) == IDC_DUMPSXISO_PCM)
-		{
-			DumpISO->Encoding = AudioEncoding::PCM;
-			CheckDlgButton(hwndDlg, IDC_DUMPSXISO_WAVE, BST_UNCHECKED);
-			CheckDlgButton(hwndDlg, IDC_DUMPSXISO_PCM, BST_CHECKED);
-			CheckDlgButton(hwndDlg, IDC_DUMPSXISO_FLAC, BST_UNCHECKED);
-			return TRUE;
-		}
+        if (LOWORD(wParam) == IDC_DUMPSXISO_PCM)
+        {
+            DumpISO->Encoding = AudioEncoding::PCM;
+            CheckDlgButton(hwndDlg, IDC_DUMPSXISO_WAVE, BST_UNCHECKED);
+            CheckDlgButton(hwndDlg, IDC_DUMPSXISO_PCM, BST_CHECKED);
+            CheckDlgButton(hwndDlg, IDC_DUMPSXISO_FLAC, BST_UNCHECKED);
+            return TRUE;
+        }
 
-		if (LOWORD(wParam) == IDC_DUMPSXISO_FLAC)
-		{
-			DumpISO->Encoding = AudioEncoding::FLAC;
-			CheckDlgButton(hwndDlg, IDC_DUMPSXISO_WAVE, BST_UNCHECKED);
-			CheckDlgButton(hwndDlg, IDC_DUMPSXISO_PCM, BST_UNCHECKED);
-			CheckDlgButton(hwndDlg, IDC_DUMPSXISO_FLAC, BST_CHECKED);
-			return TRUE;
-		}
+        if (LOWORD(wParam) == IDC_DUMPSXISO_FLAC)
+        {
+            DumpISO->Encoding = AudioEncoding::FLAC;
+            CheckDlgButton(hwndDlg, IDC_DUMPSXISO_WAVE, BST_UNCHECKED);
+            CheckDlgButton(hwndDlg, IDC_DUMPSXISO_PCM, BST_UNCHECKED);
+            CheckDlgButton(hwndDlg, IDC_DUMPSXISO_FLAC, BST_CHECKED);
+            return TRUE;
+        }
 
         if (LOWORD(wParam) == IDC_DUMPSXISO_XML)
         {
             if (auto Filename = Window->GetSaveFilename({ L"Extensible Markup Language" }, { L"*.xml" }); Filename.has_value())
-			{
-				DumpISO->XmlFilename = Filename.value();
-				SetDlgItemText(hwndDlg, IDC_DUMPSXISO_XML_FILE, Filename.value().c_str());
+            {
+                DumpISO->XmlFilename = Filename.value();
+                SetDlgItemText(hwndDlg, IDC_DUMPSXISO_XML_FILE, Filename.value().c_str());
             }
             return TRUE;
         }
 
         if (LOWORD(wParam) == IDC_DUMPSXISO_XML_CREATE)
         {
-			DumpISO->b_CreateXml ? DumpISO->b_CreateXml = false : DumpISO->b_CreateXml = true;
+            DumpISO->b_CreateXml ? DumpISO->b_CreateXml = false : DumpISO->b_CreateXml = true;
             CheckDlgButton(hwndDlg, IDC_DUMPSXISO_XML_CREATE, DumpISO->b_CreateXml);
             HWND hButton = GetDlgItem(hwndDlg, IDC_DUMPSXISO_XML_FILE);
             EnableWindow(hButton, DumpISO->b_CreateXml);
@@ -467,16 +464,16 @@ BOOL CALLBACK DumpProc(HWND hwndDlg, UINT message, WPARAM wParam, LPARAM lParam)
 
         if (LOWORD(wParam) == IDC_DUMPSXISO_XML_SORT_BY_DIR)
         {
-			DumpISO->b_SortByDir ? DumpISO->b_SortByDir = false : DumpISO->b_SortByDir = true;
+            DumpISO->b_SortByDir ? DumpISO->b_SortByDir = false : DumpISO->b_SortByDir = true;
             CheckDlgButton(hwndDlg, IDC_DUMPSXISO_XML_SORT_BY_DIR, DumpISO->b_SortByDir);
-			return TRUE;
+            return TRUE;
         }
 
         if (LOWORD(wParam) == IDC_DUMPSXISO_PATH_TABLE)
         {
-			DumpISO->b_PathTable ? DumpISO->b_PathTable = false : DumpISO->b_PathTable = true;
+            DumpISO->b_PathTable ? DumpISO->b_PathTable = false : DumpISO->b_PathTable = true;
             CheckDlgButton(hwndDlg, IDC_DUMPSXISO_PATH_TABLE, DumpISO->b_PathTable);
-			return TRUE;
+            return TRUE;
         }
 
         break;
@@ -546,7 +543,7 @@ BOOL CALLBACK MakeProc(HWND hwndDlg, UINT message, WPARAM wParam, LPARAM lParam)
 
         ShowWindow(hwndDlg, SW_SHOW);
     }
-        return TRUE;
+    return TRUE;
     case WM_DROPFILES:
         Window->MsgDropFiles(wParam, lParam);
         return FALSE;
@@ -582,32 +579,32 @@ BOOL CALLBACK MakeProc(HWND hwndDlg, UINT message, WPARAM wParam, LPARAM lParam)
                 {
                     GetDlgItemTextA(hwndDlg, IDC_MKPSXISO_IMAGE, &Buffer.data()[0], 65535);
                     MakeISO->BinFilename = Window->CleanPath(Buffer.data());
-					if (MakeISO->BinFilename.empty())
-					{
-						MakeISO->BinFilename = Filestem.string() += ".bin";
-					}
-					Commandline += "-o \"" + MakeISO->BinFilename.string() + "\" ";
+                    if (MakeISO->BinFilename.empty())
+                    {
+                        MakeISO->BinFilename = Filestem.string() += ".bin";
+                    }
+                    Commandline += "-o \"" + MakeISO->BinFilename.string() + "\" ";
                 }
 
                 // -c
                 if (MakeISO->b_OverrideCueName)
                 {
                     GetDlgItemTextA(hwndDlg, IDC_MKPSXISO_CUE, &Buffer.data()[0], 65535);
-					MakeISO->CueFilename = Window->CleanPath(Buffer.data());
+                    MakeISO->CueFilename = Window->CleanPath(Buffer.data());
                     if (MakeISO->CueFilename.empty())
                     {
                         MakeISO->CueFilename = Filestem.string() += ".cue";
                     }
-					Commandline += "-c \"" + MakeISO->CueFilename.string() + "\" ";
+                    Commandline += "-c \"" + MakeISO->CueFilename.string() + "\" ";
                 }
 
                 // -l
-				if (MakeISO->b_OverrideVolumeLabel)
-				{
-					GetDlgItemTextA(hwndDlg, IDC_MKPSXISO_VOLUME, &Buffer.data()[0], 65535);
-					MakeISO->VolumeLabel = Buffer.data();
-					Commandline += "-l \"" + MakeISO->VolumeLabel.string() + "\" ";
-				}
+                if (MakeISO->b_OverrideVolumeLabel)
+                {
+                    GetDlgItemTextA(hwndDlg, IDC_MKPSXISO_VOLUME, &Buffer.data()[0], 65535);
+                    MakeISO->VolumeLabel = Buffer.data();
+                    Commandline += "-l \"" + MakeISO->VolumeLabel.string() + "\" ";
+                }
 
                 // -lba
                 if (MakeISO->b_GenLBA)
@@ -652,11 +649,11 @@ BOOL CALLBACK MakeProc(HWND hwndDlg, UINT message, WPARAM wParam, LPARAM lParam)
                 }
 
                 // -rebuildxml
-				if (MakeISO->b_RebuildXML)
-				{
+                if (MakeISO->b_RebuildXML)
+                {
                     std::filesystem::path Filename = Filestem.string() += "_rebuild.xml";
                     Commandline += "-rebuildxml \"" + Filename.string() + "\" ";
-				}
+                }
 
                 // -noisogen
                 if (MakeISO->b_GenNoISO)
@@ -679,17 +676,17 @@ BOOL CALLBACK MakeProc(HWND hwndDlg, UINT message, WPARAM wParam, LPARAM lParam)
                     Window->Status(2, "Operation: Success");
                     Window->Message(L"\"%ws\" was created successfully", MakeISO->BinFilename.filename().wstring().c_str());
                 }
-				else
-				{
-					Window->Status(2, "Operation: Fail");
-					Window->Message(L"An unknown error occurred when trying to create \"%ws\"\r\n\r\nCommandline:\r\n\r\n%s", MakeISO->BinFilename.stem().wstring().c_str(), Commandline.c_str());
-				}
+                else
+                {
+                    Window->Status(2, "Operation: Fail");
+                    Window->Message(L"An unknown error occurred when trying to create \"%ws\"\r\n\r\nCommandline:\r\n\r\n%s", MakeISO->BinFilename.stem().wstring().c_str(), Commandline.c_str());
+                }
             }
-			else
-			{
-				Window->Status(2, "Operation: Fail");
-				Window->Message(L"\"%ws\" is an invalid file", MakeISO->Filename.filename().wstring().c_str());
-			}
+            else
+            {
+                Window->Status(2, "Operation: Fail");
+                Window->Message(L"\"%ws\" is an invalid file", MakeISO->Filename.filename().wstring().c_str());
+            }
             Window->Status(2, "Status: Ready\0");
             return TRUE;
         }
@@ -714,41 +711,41 @@ BOOL CALLBACK MakeProc(HWND hwndDlg, UINT message, WPARAM wParam, LPARAM lParam)
             return TRUE;
         }
 
-		if (LOWORD(wParam) == IDC_MKPSXISO_IMAGE_SAVE)
-		{
-			if (auto Filename = Window->GetSaveFilename({ L"Optical Disc Image" }, { L"*.iso;*.bin" }); Filename.has_value())
-			{
-				MakeISO->BinFilename = Filename.value();
-				SetDlgItemText(hwndDlg, IDC_MKPSXISO_IMAGE, MakeISO->BinFilename.c_str());
+        if (LOWORD(wParam) == IDC_MKPSXISO_IMAGE_SAVE)
+        {
+            if (auto Filename = Window->GetSaveFilename({ L"Optical Disc Image" }, { L"*.iso;*.bin" }); Filename.has_value())
+            {
+                MakeISO->BinFilename = Filename.value();
+                SetDlgItemText(hwndDlg, IDC_MKPSXISO_IMAGE, MakeISO->BinFilename.c_str());
 
                 if (MakeISO->CueFilename.empty())
                 {
                     MakeISO->CueFilename = Window->GetDirectory(MakeISO->BinFilename) / MakeISO->BinFilename.stem().wstring() += ".cue";
                     SetDlgItemText(hwndDlg, IDC_MKPSXISO_CUE, MakeISO->CueFilename.c_str());
                 }
-			}
-			return TRUE;
-		}
+            }
+            return TRUE;
+        }
 
-		if (LOWORD(wParam) == IDC_MKPSXISO_CUE_SAVE)
-		{
-			if (auto Filename = Window->GetSaveFilename({ L"CDRWIN Cue Sheet" }, { L"*.cue" }); Filename.has_value())
-			{
-				MakeISO->CueFilename = Filename.value();
-				SetDlgItemText(hwndDlg, IDC_MKPSXISO_CUE, MakeISO->CueFilename.c_str());
+        if (LOWORD(wParam) == IDC_MKPSXISO_CUE_SAVE)
+        {
+            if (auto Filename = Window->GetSaveFilename({ L"CDRWIN Cue Sheet" }, { L"*.cue" }); Filename.has_value())
+            {
+                MakeISO->CueFilename = Filename.value();
+                SetDlgItemText(hwndDlg, IDC_MKPSXISO_CUE, MakeISO->CueFilename.c_str());
 
                 if (MakeISO->BinFilename.empty())
                 {
                     MakeISO->BinFilename = Window->GetDirectory(MakeISO->CueFilename) / MakeISO->CueFilename.stem().wstring() += ".bin";
                     SetDlgItemText(hwndDlg, IDC_MKPSXISO_IMAGE, MakeISO->BinFilename.c_str());
                 }
-			}
-			return TRUE;
-		}
+            }
+            return TRUE;
+        }
 
         if (LOWORD(wParam) == IDC_MKPSXISO_IMAGE_OVERRIDE)
         {
-			MakeISO->b_OverrideImageName ? MakeISO->b_OverrideImageName = false : MakeISO->b_OverrideImageName = true;
+            MakeISO->b_OverrideImageName ? MakeISO->b_OverrideImageName = false : MakeISO->b_OverrideImageName = true;
             CheckDlgButton(hwndDlg, IDC_MKPSXISO_IMAGE_OVERRIDE, MakeISO->b_OverrideImageName);
 
             HWND hButton = GetDlgItem(hwndDlg, IDC_MKPSXISO_IMAGE_SAVE);
@@ -761,7 +758,7 @@ BOOL CALLBACK MakeProc(HWND hwndDlg, UINT message, WPARAM wParam, LPARAM lParam)
 
         if (LOWORD(wParam) == IDC_MKPSXISO_CUE_OVERRIDE)
         {
-			MakeISO->b_OverrideCueName ? MakeISO->b_OverrideCueName = false : MakeISO->b_OverrideCueName = true;
+            MakeISO->b_OverrideCueName ? MakeISO->b_OverrideCueName = false : MakeISO->b_OverrideCueName = true;
             CheckDlgButton(hwndDlg, IDC_MKPSXISO_CUE_OVERRIDE, MakeISO->b_OverrideCueName);
 
             HWND hButton = GetDlgItem(hwndDlg, IDC_MKPSXISO_CUE_SAVE);
@@ -774,7 +771,7 @@ BOOL CALLBACK MakeProc(HWND hwndDlg, UINT message, WPARAM wParam, LPARAM lParam)
 
         if (LOWORD(wParam) == IDC_MKPSXISO_VOLUME_OVERRIDE)
         {
-			MakeISO->b_OverrideVolumeLabel ? MakeISO->b_OverrideVolumeLabel = false : MakeISO->b_OverrideVolumeLabel = true;
+            MakeISO->b_OverrideVolumeLabel ? MakeISO->b_OverrideVolumeLabel = false : MakeISO->b_OverrideVolumeLabel = true;
             CheckDlgButton(hwndDlg, IDC_MKPSXISO_VOLUME_OVERRIDE, MakeISO->b_OverrideVolumeLabel);
 
             HWND hButton = GetDlgItem(hwndDlg, IDC_MKPSXISO_VOLUME);
@@ -785,70 +782,70 @@ BOOL CALLBACK MakeProc(HWND hwndDlg, UINT message, WPARAM wParam, LPARAM lParam)
 
         if (LOWORD(wParam) == IDC_MKPSXISO_LBA)
         {
-			MakeISO->b_GenLBA ? MakeISO->b_GenLBA = false : MakeISO->b_GenLBA = true;
+            MakeISO->b_GenLBA ? MakeISO->b_GenLBA = false : MakeISO->b_GenLBA = true;
             CheckDlgButton(hwndDlg, IDC_MKPSXISO_LBA, MakeISO->b_GenLBA);
             return TRUE;
         }
 
         if (LOWORD(wParam) == IDC_MKPSXISO_LBA_HEAD)
         {
-			MakeISO->b_GenHeader ? MakeISO->b_GenHeader = false : MakeISO->b_GenHeader = true;
+            MakeISO->b_GenHeader ? MakeISO->b_GenHeader = false : MakeISO->b_GenHeader = true;
             CheckDlgButton(hwndDlg, IDC_MKPSXISO_LBA_HEAD, MakeISO->b_GenHeader);
             return TRUE;
         }
 
         if (LOWORD(wParam) == IDC_MKPSXISO_FILE_CODE)
         {
-			MakeISO->b_GenFilecode ? MakeISO->b_GenFilecode = false : MakeISO->b_GenFilecode = true;
+            MakeISO->b_GenFilecode ? MakeISO->b_GenFilecode = false : MakeISO->b_GenFilecode = true;
             CheckDlgButton(hwndDlg, IDC_MKPSXISO_FILE_CODE, MakeISO->b_GenFilecode);
             return TRUE;
         }
 
         if (LOWORD(wParam) == IDC_MKPSXISO_RE1_LBA)
         {
-			MakeISO->b_GenRE1LBA ? MakeISO->b_GenRE1LBA = false : MakeISO->b_GenRE1LBA = true;
+            MakeISO->b_GenRE1LBA ? MakeISO->b_GenRE1LBA = false : MakeISO->b_GenRE1LBA = true;
             CheckDlgButton(hwndDlg, IDC_MKPSXISO_RE1_LBA, MakeISO->b_GenRE1LBA);
             return TRUE;
         }
 
         if (LOWORD(wParam) == IDC_MKPSXISO_RE2_LBA)
         {
-			MakeISO->b_GenRE2LBA ? MakeISO->b_GenRE2LBA = false : MakeISO->b_GenRE2LBA = true;
+            MakeISO->b_GenRE2LBA ? MakeISO->b_GenRE2LBA = false : MakeISO->b_GenRE2LBA = true;
             CheckDlgButton(hwndDlg, IDC_MKPSXISO_RE2_LBA, MakeISO->b_GenRE2LBA);
             return TRUE;
         }
 
         if (LOWORD(wParam) == IDC_MKPSXISO_RE_TEXT)
         {
-			MakeISO->b_GenRETEXT ? MakeISO->b_GenRETEXT = false : MakeISO->b_GenRETEXT = true;
+            MakeISO->b_GenRETEXT ? MakeISO->b_GenRETEXT = false : MakeISO->b_GenRETEXT = true;
             CheckDlgButton(hwndDlg, IDC_MKPSXISO_RE_TEXT, MakeISO->b_GenRETEXT);
             return TRUE;
         }
 
         if (LOWORD(wParam) == IDC_MKPSXISO_NO_ISO_GEN)
         {
-			MakeISO->b_GenNoISO ? MakeISO->b_GenNoISO = false : MakeISO->b_GenNoISO = true;
+            MakeISO->b_GenNoISO ? MakeISO->b_GenNoISO = false : MakeISO->b_GenNoISO = true;
             CheckDlgButton(hwndDlg, IDC_MKPSXISO_NO_ISO_GEN, MakeISO->b_GenNoISO);
             return TRUE;
         }
 
         if (LOWORD(wParam) == IDC_MKPSXISO_NO_XA)
         {
-			MakeISO->b_GenNoCDXA ? MakeISO->b_GenNoCDXA = false : MakeISO->b_GenNoCDXA = true;
+            MakeISO->b_GenNoCDXA ? MakeISO->b_GenNoCDXA = false : MakeISO->b_GenNoCDXA = true;
             CheckDlgButton(hwndDlg, IDC_MKPSXISO_NO_XA, MakeISO->b_GenNoCDXA);
             return TRUE;
         }
 
         if (LOWORD(wParam) == IDC_MKPSXISO_REBUILD_XML)
         {
-			MakeISO->b_RebuildXML ? MakeISO->b_RebuildXML = false : MakeISO->b_RebuildXML = true;
+            MakeISO->b_RebuildXML ? MakeISO->b_RebuildXML = false : MakeISO->b_RebuildXML = true;
             CheckDlgButton(hwndDlg, IDC_MKPSXISO_REBUILD_XML, MakeISO->b_RebuildXML);
             return TRUE;
         }
 
         if (LOWORD(wParam) == IDC_MKPSXISO_OVERWRITE)
         {
-			MakeISO->b_Overwrite ? MakeISO->b_Overwrite = false : MakeISO->b_Overwrite = true;
+            MakeISO->b_Overwrite ? MakeISO->b_Overwrite = false : MakeISO->b_Overwrite = true;
             CheckDlgButton(hwndDlg, IDC_MKPSXISO_OVERWRITE, MakeISO->b_Overwrite);
             return TRUE;
         }

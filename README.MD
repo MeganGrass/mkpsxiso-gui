@@ -49,6 +49,14 @@ MKPSXISO 2.10 - PlayStation ISO Image Maker
 ```
 
 ## Changelog
+Version 2.1.0.3 (October 26, 2024)
+- Minor aesthetic fixes
+- More background updates
+
+Version 2.1.0.2 (October 21, 2024)
+- Minor bugfix where "image_name" and "cue_sheet" override was enabled/disabled every time XML was selected via Windows file browser
+- Even more code cleanup and background updates
+
 Version 2.1.0.1 (October 20, 2024)
 - "Output Directory," "XML Output," "image_name," and "cue_sheet" fields will now be automatically repopulated every time an ISO/BIN/XML is selected via Windows file browser
 - Code cleanup and background updates
